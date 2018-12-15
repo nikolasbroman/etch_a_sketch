@@ -1,0 +1,1 @@
+A browser application for drawing sketches. Built in JavaScript.
