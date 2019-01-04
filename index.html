@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+
+<body>
+
+    <button id="reset">Reset grid</button>
+    <div id="container">
+    </div>
+
+</body>
+
+
+
+<script>
+
+    const container = document.querySelector('#container');
+
+
+    let mouseDown = 0;
+    let removeBlack = 0;
+
+    document.body.onmousedown = function () {
+        mouseDown = 1;
+    }
+    document.body.onmouseup = function () {
+        mouseDown = 0;
+
+    }
+
+    function testFunction() {
+        if (this.classList.contains("black") == true) {
+            this.classList.remove("black");
+            removeBlack = 1;
+        } else {
+            this.classList.add("black");
+            removeBlack = 0;
+        }
+    }
+
+    function testFunctionTwo() {
+        if (mouseDown == 1) {
+            if (removeBlack == 1) {
+                this.classList.remove("black");
+            } else {
+                this.classList.add("black");
+            }
+        }
+    }
+
+
+    function createGrid(numberOfDivs) {
+
+        for (let i = 0; i < numberOfDivs * numberOfDivs; i++) {
+            let div = document.createElement('div');
+            div.textContent = '\u00A0';
+            let size = (700) / numberOfDivs + 'px';
+            div.style.width = size;
+            div.style.height = size;
+            container.appendChild(div);
+            div.addEventListener('mousedown', testFunction);
+            div.addEventListener('mouseenter', testFunctionTwo)
+        }
+    }
+
+    let numberOfDivs = 16;
+    createGrid(numberOfDivs);
+
+
+    function resetGrid() {
+        numberOfDivs = prompt("What size would you like the grid to be? (min: 1, max: 64)");
+        if (numberOfDivs == null) {
+            return;
+        }
+        while (numberOfDivs < 1 || isNaN(numberOfDivs)) {
+            numberOfDivs = prompt("Please give a number between 1 and 64.");
+            if (numberOfDivs == null) {
+                return;
+            }
+        }
+        if (numberOfDivs > 64) {
+            alert("Thanks, but " + numberOfDivs + " is too much. Let's make it 64 instead.");
+            numberOfDivs = 64;
+        }
+        while (container.firstChild) {
+            container.removeChild(container.firstChild);
+        }
+        createGrid(numberOfDivs);
+    }
+
+    reset.addEventListener('click', resetGrid);
+
+
+
+
+
+
+
+
+
+
+</script>
+
+
+
+
+
+</html>
