@@ -1,1 +1,1 @@
-A browser application for drawing sketches. Built in JavaScript.
+A browser application for drawing black and white pixel sketches. Built in JavaScript.

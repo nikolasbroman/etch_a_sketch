@@ -83,7 +83,7 @@
                 return;
             }
         }
-        if (numberOfDivs > 64) {
+        if (numberOfDivs > 64) { // does work with grids >64, but becomes slower and clumsier
             alert("Thanks, but " + numberOfDivs + " is too much. Let's make it 64 instead.");
             numberOfDivs = 64;
         }
